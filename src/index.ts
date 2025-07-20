@@ -41,7 +41,8 @@ bot.callbackQuery('menu', async (ctx) => {
   try {
     await ctx.answerCallbackQuery();
 } catch (error) {
-    console.error('Error answering callback query:', error.message);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    console.error('Error answering callback query:', errorMessage);
     // Optionally handle the error (e.g., ignore if it's just a timeout)
 }
 
@@ -72,10 +73,11 @@ bot.callbackQuery(/^buyProduct-\d+$/, payments)
 bot.callbackQuery('backToMenu', async (ctx) => {
   try {
     await ctx.answerCallbackQuery();
-} catch (error) {
-    console.error('Error answering callback query:', error.message);
-    // Optionally handle the error (e.g., ignore if it's just a timeout)
-}
+  } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      console.error('Error answering callback query:', errorMessage);
+      // Optionally handle the error (e.g., ignore if it's just a timeout)
+  }
 
   ctx.callbackQuery.message?.editText(`
     ✨ Вы в главном меню!
