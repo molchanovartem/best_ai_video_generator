@@ -13,7 +13,7 @@ export const productsCommand = async (ctx: CallbackQueryContext<MyContext>) => {
   const products = getProducts(process.env.MODEL_NAME as ModelName);
 
   const productList = products.reduce((acc, curr) => {
-    return ( acc + `⚡ ${curr.name} ${curr.price} ₽\n Описание: ${curr.description}\n\n`)
+    return ( acc + `⚡ ${curr.description} ${curr.price} ₽\n Описание: ${curr.description}\n\n`)
   }, '')
 
   const messageText = `🛍 Все товары:\n\n${productList}`
